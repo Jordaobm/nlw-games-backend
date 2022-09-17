@@ -1,0 +1,122 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "NLW Games",
+    "description": "API desenvolvida para encontrar seu DUO",
+    "version": "1.0.0",
+    "contact": {
+      "email": "jbmassariol@gmail.com"
+    }
+  },
+  "paths": {
+    "/games": {
+      "get": {
+        "tags": ["Games"],
+        "summary": "Listar games",
+        "description": "Listar games",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "bannerUrl": {
+                        "type": "string"
+                      },
+                      "_count": {
+                        "type": "object",
+                        "properties": {
+                          "ads": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/games/{gameID}/ad": {
+      "post": {
+        "tags": ["Anúncios"],
+        "summary": "Criando um novo anúncio",
+        "description": "Criando um novo anúncio",
+        "parameters": [
+          {
+            "name": "gameID",
+            "in": "path",
+            "description": "ID do Game",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "discord": {
+                    "type": "string"
+                  },
+                  "yearsPlaying": {
+                    "type": "number"
+                  },
+                  "weekDays": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  "hourStart": {
+                    "type": "string"
+                  },
+                  "hourEnd": {
+                    "type": "string"
+                  },
+                  "houruseVoiceChannelnd": {
+                    "type": "boolean"
+                  }
+                },
+                "example": {
+                  "name": "John Doe",
+                  "discord": "JohnDoe#1234",
+                  "yearsPlaying": 2,
+                  "weekDays": [0, 6],
+                  "hourStart": "18:00",
+                  "hourEnd": "20:00",
+                  "useVoiceChannel": true
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Não foi possível criar o anúncio"
+          }
+        }
+      }
+    }
+  }
+}
