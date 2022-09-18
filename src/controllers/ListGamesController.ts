@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ListGameService } from "../services/ListGameService";
+import { ListGameService } from "../services/ListGamesService";
 
 export class ListGameController {
   async handle(request: Request, response: Response): Promise<Response> {
